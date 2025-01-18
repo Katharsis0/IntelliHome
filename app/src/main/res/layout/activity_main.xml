@@ -9,94 +9,112 @@
     android:background="#123a75">
 
     <!--Linear Layout (repisa)-->
-    <LinearLayout
-        android:layout_width="261dp"
-        android:layout_height="300dp"
-        android:orientation="horizontal"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="302dp"
+        android:layout_height="395dp"
+        android:textColorHint="@color/gray"
+        app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!--Usuario o correo-->
+        <!--Contraseña-->
+
+        <!--Botón Registrarse-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:fontFamily="@font/merriweather"
+            android:hint="Ingrese su usuario o correo"
+            android:textSize="16dp" />
+
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="274dp"
+            android:layout_width="300dp"
+            android:layout_height="155dp"
+            android:layout_marginTop="16dp"
             android:textColorHint="@color/gray"
             app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp">
+            app:boxCornerRadiusTopStart="10dp"
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:fontFamily="@font/Merriweather"
-                android:hint="Ingrese su usuario o correo"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/merriweather"
+                android:hint="Ingrese su contraseña"
+                android:inputType="textPassword"
                 android:textSize="16dp" />
 
-            <!--Contraseña-->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="155dp"
-                android:layout_marginTop="16dp"
-                android:textColorHint="@color/gray"
-                app:boxBackgroundColor="@color/white"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp">
+            <!--Olvidó contraseña-->
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="300dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="¿Olvidó su contraseña?"
+                android:textColor="@color/LightGray"
+                android:textSize="16dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:backgroundTint="@color/white"
-                    android:fontFamily="@font/Merriweather"
-                    android:hint="Ingrese su contraseña"
-                    android:textSize="16dp" />
-
-                <!--Olvidó contraseña-->
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="¿Olvidó su contraseña?"
-                    android:textColor="@color/LightGray"
-                    android:textSize="16dp" />
-
-                <!--Botón Iniciar Sesión-->
-                <Button
-                    android:id="@+id/Button"
-                    android:layout_width="148dp"
-                    android:layout_height="10dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/DarkBlue"
-                    android:text="Iniciar Sesión"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"
-                    app:cornerRadius="10dp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!--Botón Registrarse-->
+            <!--Botón Iniciar Sesión-->
             <Button
-                android:id="@+id/Button1"
+                android:id="@+id/Button"
                 android:layout_width="148dp"
-                android:layout_height="10dp"
+                android:layout_height="28dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:backgroundTint="@color/DarkBlue"
-                android:text="Registrarse"
+                android:text="Iniciar Sesión"
                 android:textColor="@color/white"
                 android:textSize="16dp"
                 app:cornerRadius="10dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/Button1"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:backgroundTint="@color/DarkBlue"
+            android:text="Registrarse"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:cornerRadius="10dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="Continuar con:"
+            android:textColor="@color/LightGray"
+            android:textSize="16dp" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="85dp"
+            android:layout_height="66dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:scaleType="fitCenter"
+            android:src="@drawable/google" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
