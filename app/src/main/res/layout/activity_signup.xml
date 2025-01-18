@@ -14,7 +14,6 @@
         android:background="#123a75"
         android:padding="16dp">
 
-        <!-- Previous views remain the same until editFechaNacimiento -->
         <ImageView
             android:id="@+id/fondoCamara"
             android:layout_width="120dp"
@@ -23,7 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/circular" />
+            app:srcCompat="@drawable/camara" />
 
         <EditText
             android:id="@+id/editNombre"
@@ -33,6 +32,7 @@
             android:hint="@string/nombre"
             android:inputType="text"
             android:padding="12dp"
+            android:background="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fondoCamara"
@@ -46,6 +46,7 @@
             android:hint="@string/apellidos"
             android:inputType="text"
             android:padding="12dp"
+            android:background="@android:color/white"
             app:layout_constraintEnd_toEndOf="@id/editNombre"
             app:layout_constraintStart_toStartOf="@id/editNombre"
             app:layout_constraintTop_toBottomOf="@id/editNombre" />
@@ -58,6 +59,7 @@
             android:hint="@string/usuario"
             android:inputType="text"
             android:padding="12dp"
+            android:background="@android:color/white"
             app:layout_constraintEnd_toEndOf="@id/editApellidos"
             app:layout_constraintStart_toStartOf="@id/editApellidos"
             app:layout_constraintTop_toBottomOf="@id/editApellidos" />
@@ -70,11 +72,11 @@
             android:hint="@string/nacimiento"
             android:inputType="date"
             android:padding="12dp"
+            android:background="@android:color/white"
             app:layout_constraintEnd_toEndOf="@id/editUsuario"
             app:layout_constraintStart_toStartOf="@id/editUsuario"
             app:layout_constraintTop_toBottomOf="@id/editUsuario" />
 
-        <!-- Replace checkbox with RadioGroup for gender -->
         <TextView
             android:id="@+id/textGenero"
             android:layout_width="wrap_content"
@@ -92,6 +94,7 @@
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
             android:padding="12dp"
+
             app:layout_constraintEnd_toEndOf="@id/editFechaNacimiento"
             app:layout_constraintStart_toStartOf="@id/editFechaNacimiento"
             app:layout_constraintTop_toBottomOf="@id/textGenero">
@@ -111,13 +114,13 @@
                 android:text="Mujer" />
         </RadioGroup>
 
-        <!-- Rest of the views continue with updated constraints -->
         <Spinner
             android:id="@+id/spinnerNacionalidad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="12dp"
+            android:background="@android:color/white"
             app:layout_constraintEnd_toEndOf="@id/editFechaNacimiento"
             app:layout_constraintStart_toStartOf="@id/editFechaNacimiento"
             app:layout_constraintTop_toBottomOf="@id/radioGroupGenero" />
@@ -130,6 +133,7 @@
             android:hint="@string/contraseña"
             android:inputType="textPassword"
             android:padding="12dp"
+            android:background="@android:color/white"
             app:layout_constraintEnd_toEndOf="@id/spinnerNacionalidad"
             app:layout_constraintStart_toStartOf="@id/spinnerNacionalidad"
             app:layout_constraintTop_toBottomOf="@id/spinnerNacionalidad" />
@@ -142,6 +146,7 @@
             android:hint="@string/confirmar_contraseña"
             android:inputType="textPassword"
             android:padding="12dp"
+            android:background="@android:color/white"
             app:layout_constraintEnd_toEndOf="@id/editContrasena"
             app:layout_constraintStart_toStartOf="@id/editContrasena"
             app:layout_constraintTop_toBottomOf="@id/editContrasena" />
@@ -152,6 +157,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:padding="12dp"
+            android:background="@android:color/white"
             app:layout_constraintEnd_toEndOf="@id/editConfirmarContrasena"
             app:layout_constraintStart_toStartOf="@id/editConfirmarContrasena"
             app:layout_constraintTop_toBottomOf="@id/editConfirmarContrasena" />
