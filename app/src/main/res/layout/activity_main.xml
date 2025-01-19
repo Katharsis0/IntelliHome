@@ -11,6 +11,7 @@
     <!--Linear Layout (repisa)-->
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="302dp"
         android:layout_height="395dp"
         android:textColorHint="@color/gray"
@@ -21,15 +22,17 @@
         app:boxCornerRadiusTopStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.833">
 
         <!--Contraseña-->
 
         <!--Botón Registrarse-->
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_height="55dp"
             android:fontFamily="@font/merriweather"
             android:hint="Ingrese su usuario o correo"
             android:textSize="16dp" />
@@ -48,7 +51,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="300dp"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/merriweather"
                 android:hint="Ingrese su contraseña"
@@ -65,7 +68,9 @@
                 android:gravity="center_horizontal"
                 android:text="¿Olvidó su contraseña?"
                 android:textColor="@color/LightGray"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:clickable="true"
+                android:focusable="true"/>
 
             <!--Botón Iniciar Sesión-->
             <Button
@@ -116,5 +121,18 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.825"
+        app:srcCompat="@drawable/logo1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 

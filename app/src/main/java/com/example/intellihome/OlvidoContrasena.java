@@ -2,7 +2,7 @@ package com.example.intellihome;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,13 +10,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class OlvidoContrasena extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_olvido_contrasena);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         // Ajuste para las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -25,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Obtener el TextView y configurar el listener
-        TextView textView = findViewById(R.id.textView2);
-        textView.setOnClickListener(v -> {
+        // Obtener el botón y configurar el listener
+        Button button = findViewById(R.id.Regresar);
+        button.setOnClickListener(v -> {
             // Redirigir a la actividad OlvidoContrasena
-            Intent intent = new Intent(MainActivity.this, OlvidoContrasena.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(OlvidoContrasena.this, MainActivity.class);
+            startActivity(intent1);
         });
     }
 }
