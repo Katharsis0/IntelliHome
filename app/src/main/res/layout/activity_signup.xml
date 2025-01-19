@@ -32,10 +32,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="@android:color/white"
+            android:background="@drawable/radius_corner"
             android:hint="@string/nombre"
             android:inputType="text"
-            android:padding="12dp"
+            android:padding="9dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fondoCamara"
@@ -46,10 +46,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@android:color/white"
+            android:background="@drawable/radius_corner"
             android:hint="@string/apellidos"
             android:inputType="text"
-            android:padding="12dp"
+            android:padding="9dp"
             app:layout_constraintEnd_toEndOf="@id/editNombre"
             app:layout_constraintStart_toStartOf="@id/editNombre"
             app:layout_constraintTop_toBottomOf="@id/editNombre" />
@@ -59,10 +59,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@android:color/white"
+            android:background="@drawable/radius_corner"
             android:hint="@string/usuario"
             android:inputType="text"
-            android:padding="12dp"
+            android:padding="9dp"
             app:layout_constraintEnd_toEndOf="@id/editApellidos"
             app:layout_constraintStart_toStartOf="@id/editApellidos"
             app:layout_constraintTop_toBottomOf="@id/editApellidos" />
@@ -72,10 +72,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@android:color/white"
+            android:background="@drawable/radius_corner"
             android:hint="@string/nacimiento"
             android:inputType="date"
-            android:padding="12dp"
+            android:padding="9dp"
             app:layout_constraintEnd_toEndOf="@id/editUsuario"
             app:layout_constraintStart_toStartOf="@id/editUsuario"
             app:layout_constraintTop_toBottomOf="@id/editUsuario" />
@@ -87,6 +87,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/género"
             android:textSize="16sp"
+            android:textColor="@color/light_gray"
             app:layout_constraintStart_toStartOf="@id/editFechaNacimiento"
             app:layout_constraintTop_toBottomOf="@id/editFechaNacimiento" />
 
@@ -96,8 +97,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
-            android:padding="12dp"
-
+            android:padding="9dp"
+            android:textColor="@color/light_gray"
             app:layout_constraintEnd_toEndOf="@id/editFechaNacimiento"
             app:layout_constraintStart_toStartOf="@id/editFechaNacimiento"
             app:layout_constraintTop_toBottomOf="@id/textGenero">
@@ -107,6 +108,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/light_gray"
                 android:text="Hombre" />
 
             <RadioButton
@@ -114,6 +116,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textColor="@color/light_gray"
                 android:text="Mujer" />
         </RadioGroup>
 
@@ -122,8 +125,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@android:color/white"
-            android:padding="12dp"
+            android:background="@drawable/radius_corner"
+            android:padding="9dp"
             app:layout_constraintEnd_toEndOf="@id/editFechaNacimiento"
             app:layout_constraintStart_toStartOf="@id/editFechaNacimiento"
             app:layout_constraintTop_toBottomOf="@id/radioGroupGenero" />
@@ -133,10 +136,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@android:color/white"
+            android:background="@drawable/radius_corner"
             android:hint="@string/contraseña"
             android:inputType="textPassword"
-            android:padding="12dp"
+            android:padding="9dp"
             app:layout_constraintEnd_toEndOf="@id/spinnerNacionalidad"
             app:layout_constraintStart_toStartOf="@id/spinnerNacionalidad"
             app:layout_constraintTop_toBottomOf="@id/spinnerNacionalidad" />
@@ -146,10 +149,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@android:color/white"
+            android:background="@drawable/radius_corner"
             android:hint="@string/confirmar_contraseña"
             android:inputType="textPassword"
-            android:padding="12dp"
+            android:padding="9dp"
             app:layout_constraintEnd_toEndOf="@id/editContrasena"
             app:layout_constraintStart_toStartOf="@id/editContrasena"
             app:layout_constraintTop_toBottomOf="@id/editContrasena" />
@@ -159,8 +162,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@android:color/white"
-            android:padding="12dp"
+            android:background="@drawable/radius_corner"
+            android:padding="9dp"
             app:layout_constraintEnd_toEndOf="@id/editConfirmarContrasena"
             app:layout_constraintStart_toStartOf="@id/editConfirmarContrasena"
             app:layout_constraintTop_toBottomOf="@id/editConfirmarContrasena" />
@@ -184,7 +187,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/dark_blue"
-                android:padding="12dp"
+                android:padding="9dp"
                 android:text="Regresar" />
 
             <Button
@@ -194,7 +197,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/dark_blue"
-                android:padding="12dp"
+                android:padding="9dp"
                 android:text="Registrar" />
         </LinearLayout>
 
