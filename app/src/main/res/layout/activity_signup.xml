@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/light_gray"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:text="Hombre" />
 
             <RadioButton
@@ -117,7 +117,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@color/light_gray"
                 android:text="Mujer" />
         </RadioGroup>
@@ -133,33 +133,47 @@
             app:layout_constraintStart_toStartOf="@id/editFechaNacimiento"
             app:layout_constraintTop_toBottomOf="@id/radioGroupGenero" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editContrasena"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
             android:hint="@string/contraseña"
-            android:inputType="textPassword"
-            android:padding="9dp"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="@id/spinnerNacionalidad"
             app:layout_constraintStart_toStartOf="@id/spinnerNacionalidad"
-            app:layout_constraintTop_toBottomOf="@id/spinnerNacionalidad" />
+            app:layout_constraintTop_toBottomOf="@id/spinnerNacionalidad">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/editConfirmarContrasena"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
-            android:hint="@string/confirmar_contraseña"
-            android:inputType="textPassword"
-            android:padding="9dp"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="@id/editContrasena"
             app:layout_constraintStart_toStartOf="@id/editContrasena"
-            app:layout_constraintTop_toBottomOf="@id/editContrasena" />
+            app:layout_constraintTop_toBottomOf="@id/editContrasena">
 
-        <Spinner
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/confirmar_contraseña"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
             android:id="@+id/spinnerPasatiempos"
             android:layout_width="0dp"
             android:layout_height="48dp"
