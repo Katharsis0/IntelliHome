@@ -20,7 +20,7 @@
             android:layout_height="150dp"
             android:layout_marginTop="24dp"
             android:background="@android:color/transparent"
-            android:contentDescription="@string/camera_button"
+            android:contentDescription="Subir foto"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         <EditText
             android:id="@+id/editNombre"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="24dp"
             android:background="@drawable/radius_corner"
             android:hint="@string/nombre"
@@ -44,7 +44,7 @@
         <EditText
             android:id="@+id/editApellidos"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
             android:hint="@string/apellidos"
@@ -57,7 +57,7 @@
         <EditText
             android:id="@+id/editUsuario"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
             android:hint="@string/usuario"
@@ -70,7 +70,7 @@
         <EditText
             android:id="@+id/editFechaNacimiento"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
             android:hint="@string/nacimiento"
@@ -109,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/light_gray"
+                android:textSize="20dp"
                 android:text="Hombre" />
 
             <RadioButton
@@ -116,6 +117,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="20dp"
                 android:textColor="@color/light_gray"
                 android:text="Mujer" />
         </RadioGroup>
@@ -123,7 +125,7 @@
         <Spinner
             android:id="@+id/spinnerNacionalidad"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
             android:padding="9dp"
@@ -134,7 +136,7 @@
         <EditText
             android:id="@+id/editContrasena"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
             android:hint="@string/contraseña"
@@ -147,7 +149,7 @@
         <EditText
             android:id="@+id/editConfirmarContrasena"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
             android:hint="@string/confirmar_contraseña"
@@ -160,7 +162,7 @@
         <Spinner
             android:id="@+id/spinnerPasatiempos"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
             android:padding="9dp"

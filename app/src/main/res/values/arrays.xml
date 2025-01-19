@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="nacionalidades">
+        <item>Nacionalidad...</item>
+        <item>Argentina</item>
+        <item>Bolivia</item>
+        <item>Brasil</item>
+        <item>Chile</item>
+        <item>Colombia</item>
+        <item>Ecuador</item>
+        <item>España</item>
+        <item>México</item>
+        <item>Perú</item>
+        <item>Venezuela</item>
+    </string-array>
+
+    <string-array name="pasatiempos">
+        <item>Pasatiempos...</item>
+        <item>Deportes</item>
+        <item>Lectura</item>
+        <item>Música</item>
+        <item>Viajes</item>
+        <item>Cocina</item>
+        <item>Fotografía</item>
+        <item>Videojuegos</item>
+        <item>Arte</item>
+        <item>Cine</item>
+    </string-array>
+</resources>
