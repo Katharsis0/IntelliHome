@@ -1,31 +1,35 @@
-package com.example.registro;
+package com.example.registro.ui.auth.registro;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import android.Manifest;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+
+import com.example.registro.R;
+import com.example.registro.data.repository.UserRepository;
+import com.example.registro.data.model.User;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,11 +40,23 @@ public class SignUpActivity extends AppCompatActivity {
 
     private Spinner spinnerNacionalidad;
     private Spinner spinnerPasatiempos;
-    private EditText editFechaNacimiento;
 
     private ImageButton fondoCamara;
     private Uri photoUri;
     private File photoFile;
+    private RadioGroup radioGroupGender;
+    private RadioButton radioHombre, radioMujer;
+    private String selectedGender;
+
+    private EditText editNombre, editApellidos, editUsername, editEmail, editFechaNacimiento;
+
+    private UserRepository userRepository;
+
+    private Button registerButton;
+
+    private TextInputLayout textInputPassword, textInputConfirmPassword;
+
+
 
     private final ActivityResultLauncher<String[]> multiplePermissionLauncher = registerForActivityResult(
             new ActivityResultContracts.RequestMultiplePermissions(),
@@ -77,6 +93,9 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Init user repository
+        userRepository = new UserRepository("192.168.18.15", 1717);
         setContentView(R.layout.activity_signup);
 
         //Initialize ImageButton
@@ -87,10 +106,39 @@ public class SignUpActivity extends AppCompatActivity {
         spinnerNacionalidad = findViewById(R.id.spinnerNacionalidad);
         spinnerPasatiempos = findViewById(R.id.spinnerPasatiempos);
 
-        //Initialize birth date field
+        //Initialize editText
+        editNombre = findViewById(R.id.editNombre);
+        editApellidos = findViewById(R.id.editApellidos);
+        editUsername = findViewById(R.id.editUsuario);
+        editEmail = findViewById(R.id.editCorreo);
         editFechaNacimiento = findViewById(R.id.editFechaNacimiento);
-        setupDatePicker();
 
+        textInputConfirmPassword = findViewById(R.id.editConfirmarContrasena);
+        textInputPassword = findViewById(R.id.editContrasena);
+
+        radioGroupGender = findViewById(R.id.radioGroupGenero);
+
+        //Init registerButton
+
+        registerButton = findViewById(R.id.buttonRegistrar);
+        registerButton.setOnClickListener(v -> handleRegistration());
+
+
+        //Default gender
+        selectedGender= "Hombre";
+
+        // Listen for changes in selection
+        radioGroupGender.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.radioHombre) {
+                selectedGender = "Hombre";
+            } else if (checkedId == R.id.radioMujer) {
+                selectedGender = "Mujer";
+            }
+        });
+
+
+        //Set up fecha
+        setupDatePicker();
         //Set up nacionalidad spinner
         ArrayAdapter<CharSequence> nacionalidadAdapter = ArrayAdapter.createFromResource(
                 this,
@@ -137,6 +185,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    //Set up fecha
     private void setupDatePicker() {
         // Prevent keyboard from showing up
         editFechaNacimiento.setInputType(InputType.TYPE_NULL);
@@ -154,7 +203,7 @@ public class SignUpActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                // Format the date as dd/mm/yyyy
+                                //Format the date as dd/mm/yyyy
                                 String selectedDate = String.format(Locale.getDefault(),
                                         "%02d/%02d/%d",
                                         dayOfMonth,
@@ -168,10 +217,10 @@ public class SignUpActivity extends AppCompatActivity {
                         day
                 );
 
-                // Set max date to current date
+                //Set max date to current date
                 datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
-                // Set minimum date (optional, e.g., 100 years ago)
+                //Set minimum date (optional, e.g., 100 years ago)
                 Calendar minDate = Calendar.getInstance();
                 minDate.add(Calendar.YEAR, -100);
                 datePickerDialog.getDatePicker().setMinDate(minDate.getTimeInMillis());
@@ -211,6 +260,7 @@ public class SignUpActivity extends AppCompatActivity {
                 .show();
     }
 
+    // When the photo is selected or taken, store the file
     private void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -242,4 +292,68 @@ public class SignUpActivity extends AppCompatActivity {
         File storageDir = getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES);
         return File.createTempFile(imageFileName, ".jpg", storageDir);
     }
+
+
+    private void handleRegistration() {
+        // Get user input from the fields
+        String nombre = editNombre.getText().toString().trim();
+        String apellidos = editApellidos.getText().toString().trim();
+        String username = editUsername.getText().toString().trim();
+        String email = editEmail.getText().toString().trim();
+        String password = textInputPassword.getEditText().getText().toString().trim();
+        String confirmPassword = textInputConfirmPassword.getEditText().getText().toString().trim();
+        String fechaNacimiento = editFechaNacimiento.getText().toString().trim();
+        String nacionalidad = spinnerNacionalidad.getSelectedItem().toString();
+        String pasatiempos = spinnerPasatiempos.getSelectedItem().toString();
+
+        // Show loading dialog
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Registrando usuario...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        if (password.equals(confirmPassword)) {
+            String photoPath = photoFile != null ? photoFile.getAbsolutePath() : "";
+            User user = new User(nombre, apellidos, username, email, password, selectedGender,
+                    fechaNacimiento, nacionalidad, pasatiempos, photoPath);
+
+            userRepository.register(user, new UserRepository.RegistrationCallback() {
+                @Override
+                public void onSuccess(String message) {
+                    progressDialog.dismiss();
+                    showRegistrationResult("Registro exitoso: " + message);
+                }
+
+                @Override
+                public void onError(String error) {
+                    progressDialog.dismiss();
+                    showError("Error en el registro: " + error);
+                }
+            });
+        } else {
+            progressDialog.dismiss();
+            showError("Las contraseñas no coinciden.");
+        }
+    }
+
+    private void showRegistrationResult(String message) {
+        // Show a message to the user about the registration status (success or error)
+        new AlertDialog.Builder(this)
+                .setTitle("Registro")
+                .setMessage(message)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    // Handle actions after the user acknowledges the result (optional)
+                })
+                .show();
+    }
+
+    private void showError(String message) {
+        // Show an error message (e.g., for password mismatch)
+        new AlertDialog.Builder(this)
+                .setTitle("Error")
+                .setMessage(message)
+                .setPositiveButton("OK", null)
+                .show();
+    }
 }
+
