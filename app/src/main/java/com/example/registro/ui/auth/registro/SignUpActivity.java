@@ -29,6 +29,8 @@ import androidx.core.content.FileProvider;
 import com.example.registro.R;
 import com.example.registro.data.repository.UserRepository;
 import com.example.registro.data.model.User;
+import com.example.registro.ui.auth.login.SecondActivity;
+import com.example.registro.ui.main.MainActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.File;
@@ -53,6 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
     private UserRepository userRepository;
 
     private Button registerButton;
+    private Button regresarButton;
 
     private TextInputLayout textInputPassword, textInputConfirmPassword;
 
@@ -119,9 +122,15 @@ public class SignUpActivity extends AppCompatActivity {
         radioGroupGender = findViewById(R.id.radioGroupGenero);
 
         //Init registerButton
-
         registerButton = findViewById(R.id.buttonRegistrar);
         registerButton.setOnClickListener(v -> handleRegistration());
+
+        //Init regresarButton
+        regresarButton = findViewById(R.id.buttonRegresar);
+        regresarButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
 
 
         //Default gender

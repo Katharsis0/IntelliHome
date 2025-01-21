@@ -21,17 +21,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Registro"
         tools:targetApi="31">
+
+        <!-- Main Activity -->
         <activity
-            android:name=".ui.auth.registro.SignUpActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Sign Up Activity -->
+        <activity
+            android:name=".ui.auth.registro.SignUpActivity"
+            android:exported="true" />
+
     </application>
 
-
 </manifest>
-
