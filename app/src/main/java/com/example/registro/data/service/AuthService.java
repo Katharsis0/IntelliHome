@@ -1,12 +1,14 @@
 package com.example.registro.data.service;
 
+import com.example.registro.data.handlers.AuthResponseHandler;
 import com.example.registro.data.model.Message;
+import com.example.registro.data.model.ServerResponse;
 import com.example.registro.data.model.User;
 import com.example.registro.data.remote.SocketClient;
 
 public class AuthService {
     private final SocketClient socketClient;
-
+    private final AuthResponseHandler authResponseHandler;
     public interface AuthCallback {
         void onSuccess(String message);
         void onError(String error);
@@ -14,6 +16,7 @@ public class AuthService {
 
     public AuthService(SocketClient socketClient) {
         this.socketClient = socketClient;
+        this.authResponseHandler = new AuthResponseHandler();
     }
 
     public void login(String username, String password, AuthCallback callback) {
@@ -35,11 +38,13 @@ public class AuthService {
             @Override
             public void onResponse(String response) {
                 try {
-                    Message responseMsg = new Message(response);
-                    if (responseMsg.getStatus().equals("success")) {
-                        callback.onSuccess(responseMsg.getMessage());
+                    ServerResponse serverResponse = new ServerResponse(response);
+                    boolean success = authResponseHandler.handleResponse(serverResponse);
+
+                    if (success) {
+                        callback.onSuccess(serverResponse.getMessage());
                     } else {
-                        callback.onError(responseMsg.getMessage());
+                        callback.onError(serverResponse.getMessage());
                     }
                 } catch (Exception e) {
                     callback.onError("Error processing response: " + e.getMessage());

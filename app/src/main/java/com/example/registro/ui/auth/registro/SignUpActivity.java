@@ -329,17 +329,34 @@ public class SignUpActivity extends AppCompatActivity {
             userRepository.register(user, new UserRepository.RegistrationCallback() {
                 @Override
                 public void onSuccess(String message) {
-                    progressDialog.dismiss();
-                    showRegistrationResult("Registro exitoso: " + message);
+                    runOnUiThread(() -> {
+                        progressDialog.dismiss();
+                        new AlertDialog.Builder(SignUpActivity.this)
+                                .setTitle("Registration Successful")
+                                .setMessage(message)
+                                .setPositiveButton("OK", (dialog, which) -> {
+                                    // Navigate to login screen or main screen
+                                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                })
+                                .show();
+                    });
                 }
 
                 @Override
                 public void onError(String error) {
-                    progressDialog.dismiss();
-                    showError("Error en el registro: " + error);
+                    runOnUiThread(() -> {
+                        progressDialog.dismiss();
+                        new AlertDialog.Builder(SignUpActivity.this)
+                                .setTitle("Registration Failed")
+                                .setMessage(error)
+                                .setPositiveButton("OK", null)
+                                .show();
+                    });
                 }
             });
-        } else {
+        }else {
             progressDialog.dismiss();
             showError("Las contraseñas no coinciden.");
         }
@@ -351,7 +368,6 @@ public class SignUpActivity extends AppCompatActivity {
                 .setTitle("Registro")
                 .setMessage(message)
                 .setPositiveButton("OK", (dialog, which) -> {
-                    // Handle actions after the user acknowledges the result (optional)
                 })
                 .show();
     }

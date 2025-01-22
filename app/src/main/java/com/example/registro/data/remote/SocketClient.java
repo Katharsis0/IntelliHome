@@ -10,6 +10,8 @@ import java.net.Socket;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+
+//LA comunicación va SocketClient -> SocketManager -> AuthService -> UserRepository
 public class SocketClient {
     private Socket socket;
     private PrintWriter out;
