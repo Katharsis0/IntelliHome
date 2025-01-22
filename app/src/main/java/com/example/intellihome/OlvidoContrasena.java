@@ -34,7 +34,7 @@ public class OlvidoContrasena extends AppCompatActivity {
         Button button = findViewById(R.id.Regresar);
         button.setOnClickListener(v -> {
             // Redirigir a la actividad OlvidoContrasena
-            Intent intent1 = new Intent(OlvidoContrasena.this, MainActivity.class);
+                Intent intent1 = new Intent(OlvidoContrasena.this, MainActivity.class);
             startActivity(intent1);
         });
     }

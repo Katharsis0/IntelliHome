@@ -17,14 +17,7 @@ public class CambioContrasena extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_cambio_contrasena);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainCambio), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-        // Ajuste para las barras del sistema
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mainCambio), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -39,3 +32,4 @@ public class CambioContrasena extends AppCompatActivity {
         });
     }
 }
+
