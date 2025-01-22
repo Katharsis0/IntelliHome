@@ -229,6 +229,5 @@
                 android:padding="9dp"
                 android:text="Registrar" />
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

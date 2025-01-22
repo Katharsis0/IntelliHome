@@ -7,7 +7,9 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -22,6 +24,9 @@
         android:theme="@style/Theme.Registro"
         tools:targetApi="31">
         <activity
+            android:name=".ui.auth.registro.TerminosCondiciones"
+            android:exported="true" />
+        <activity
             android:name=".ui.auth.registro.SignUpActivity"
             android:exported="true">
             <intent-filter>
@@ -32,6 +37,4 @@
         </activity>
     </application>
 
-
 </manifest>
-
