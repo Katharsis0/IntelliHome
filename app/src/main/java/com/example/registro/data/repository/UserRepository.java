@@ -2,46 +2,23 @@ package com.example.registro.data.repository;
 
 import com.example.registro.data.model.User;
 import com.example.registro.data.remote.SocketClient;
+import com.example.registro.data.remote.SocketManager;
+import com.example.registro.data.service.AuthService;
 
 public class UserRepository {
-    private final SocketClient socketClient;
-    private static final int CONNECTION_TIMEOUT = 5000; // 5 seconds
+    private final AuthService authService;
 
-    public interface RegistrationCallback {
-        void onSuccess(String message);
-        void onError(String error);
-    }
-
-    public UserRepository(String serverIp, int serverPort) {
-        this.socketClient = new SocketClient(serverIp, serverPort);
+    public UserRepository() {
+        // Retrieve the SocketClient from SocketManager
+        SocketClient socketClient = SocketManager.getInstance().getSocketClient();
+        this.authService = new AuthService(socketClient);
     }
 
     public void register(User user, RegistrationCallback callback) {
-        // First ensure we're connected
-        if (!socketClient.isConnected()) {
-            socketClient.connect(new SocketClient.SocketCallback() {
-                @Override
-                public void onResponse(String response) {
-                    // Once connected, send the registration data
-                    sendRegistrationData(user, callback);
-                }
-
-                @Override
-                public void onError(String error) {
-                    callback.onError("Failed to connect: " + error);
-                }
-            });
-        } else {
-            sendRegistrationData(user, callback);
-        }
-    }
-
-    private void sendRegistrationData(User user, RegistrationCallback callback) {
-        String userData = user.toJson();
-        socketClient.sendMessage(userData, new SocketClient.SocketCallback() {
+        authService.register(user, new AuthService.AuthCallback() {
             @Override
-            public void onResponse(String response) {
-                callback.onSuccess(response);
+            public void onSuccess(String message) {
+                callback.onSuccess(message);
             }
 
             @Override
@@ -51,7 +28,27 @@ public class UserRepository {
         });
     }
 
-    public void disconnect() {
-        socketClient.disconnect();
+    public void login(String username, String password, LoginCallback callback) {
+        authService.login(username, password, new AuthService.AuthCallback() {
+            @Override
+            public void onSuccess(String message) {
+                callback.onSuccess(message);
+            }
+
+            @Override
+            public void onError(String error) {
+                callback.onError(error);
+            }
+        });
+    }
+
+    public interface LoginCallback {
+        void onSuccess(String message);
+        void onError(String error);
+    }
+
+    public interface RegistrationCallback {
+        void onSuccess(String message);
+        void onError(String error);
     }
 }

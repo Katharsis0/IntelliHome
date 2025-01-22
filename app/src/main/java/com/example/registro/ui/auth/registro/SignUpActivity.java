@@ -98,7 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Init user repository
-        userRepository = new UserRepository("192.168.18.15", 1717);
+        userRepository = new UserRepository();
         setContentView(R.layout.activity_signup);
 
         //Initialize ImageButton

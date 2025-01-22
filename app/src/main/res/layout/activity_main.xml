@@ -33,6 +33,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="300dp"
             android:layout_height="55dp"
+            android:id="@+id/usernameEditText"
             android:fontFamily="@font/merriweather"
             android:hint="Ingrese su usuario o correo"
             android:textSize="16dp" />
@@ -50,6 +51,7 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordEditText"
                 android:layout_width="300dp"
                 android:layout_height="55dp"
                 android:backgroundTint="@color/white"
@@ -134,5 +136,4 @@
         app:srcCompat="@drawable/logo1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
