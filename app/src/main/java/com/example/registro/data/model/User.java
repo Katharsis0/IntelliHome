@@ -36,22 +36,31 @@ public class User {
     public String toJson() {
         try {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("nombre", nombre);
-            jsonObject.put("apellidos", apellidos);
-            jsonObject.put("username", username);
-            jsonObject.put("email", email);
-            jsonObject.put("password", password);
-            jsonObject.put("fechaNacimiento", fechaNacimiento);
-            jsonObject.put("gender", gender);
-            jsonObject.put("nacionalidad", nacionalidad);
-            jsonObject.put("pasatiempos", pasatiempos);
-            jsonObject.put("photoPath", photoPath);
+            JSONObject payloadObject = new JSONObject();
+
+            // Add fields to the payload
+            payloadObject.put("nombre", nombre);
+            payloadObject.put("apellidos", apellidos);
+            payloadObject.put("username", username);
+            payloadObject.put("email", email);
+            payloadObject.put("password", password);
+            payloadObject.put("fechaNacimiento", fechaNacimiento);
+            payloadObject.put("gender", gender);
+            payloadObject.put("nacionalidad", nacionalidad);
+            payloadObject.put("pasatiempos", pasatiempos);
+            payloadObject.put("photoPath", photoPath);
+
+            // Wrap in the client request format
+            jsonObject.put("action", "REGISTRO");
+            jsonObject.put("payload", payloadObject);
+
             return jsonObject.toString();
         } catch (JSONException e) {
             e.printStackTrace();
-            return "{}"; // Devuelve un JSON vacío en caso de error
+            return "{}"; // Return an empty JSON object in case of an error
         }
     }
+
 
     //Getters
     public String getUsername() { return username; }
