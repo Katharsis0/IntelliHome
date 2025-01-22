@@ -51,7 +51,7 @@ public class User {
             payloadObject.put("photoPath", photoPath);
 
             // Wrap in the client request format
-            jsonObject.put("action", "REGISTRO");
+            jsonObject.put("action", "REGISTER");
             jsonObject.put("payload", payloadObject);
 
             return jsonObject.toString();
@@ -59,7 +59,7 @@ public class User {
             e.printStackTrace();
             return "{}"; // Return an empty JSON object in case of an error
         }
-    }
+}
 
 
     //Getters

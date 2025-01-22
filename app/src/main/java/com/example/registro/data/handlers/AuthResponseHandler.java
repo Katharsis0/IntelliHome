@@ -8,6 +8,9 @@ public class AuthResponseHandler implements ResponseHandler<Boolean> {
         if (response == null) {
             return false;
         }
+        // Add logging to track the response
+        System.out.println("Auth Response - Status: " + response.getStatus() +
+                ", Message: " + response.getMessage());
         return response.isSuccess();
     }
 }

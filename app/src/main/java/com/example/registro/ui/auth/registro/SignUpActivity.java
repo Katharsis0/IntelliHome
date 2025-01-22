@@ -7,6 +7,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.View;
@@ -315,51 +317,85 @@ public class SignUpActivity extends AppCompatActivity {
         String nacionalidad = spinnerNacionalidad.getSelectedItem().toString();
         String pasatiempos = spinnerPasatiempos.getSelectedItem().toString();
 
+        // Validate passwords match before showing dialog and making request
+        if (!password.equals(confirmPassword)) {
+            showError("Las contraseñas no coinciden.");
+            return;
+        }
+
         // Show loading dialog
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registrando usuario...");
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        if (password.equals(confirmPassword)) {
-            String photoPath = photoFile != null ? photoFile.getAbsolutePath() : "";
-            User user = new User(nombre, apellidos, username, email, password, selectedGender,
-                    fechaNacimiento, nacionalidad, pasatiempos, photoPath);
+        // Add timeout handler
+        Handler timeoutHandler = new Handler(Looper.getMainLooper());
+        Runnable timeoutRunnable = () -> {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+                new AlertDialog.Builder(SignUpActivity.this)
+                        .setTitle("Error de Registro")
+                        .setMessage("La operación ha excedido el tiempo de espera. Por favor, inténtelo de nuevo.")
+                        .setPositiveButton("OK", null)
+                        .show();
+            }
+        };
+        // Set 30 second timeout
+        timeoutHandler.postDelayed(timeoutRunnable, 30000);
 
-            userRepository.register(user, new UserRepository.RegistrationCallback() {
-                @Override
-                public void onSuccess(String message) {
+        String photoPath = photoFile != null ? photoFile.getAbsolutePath() : "";
+        User user = new User(nombre, apellidos, username, email, password,fechaNacimiento, selectedGender,
+                nacionalidad, pasatiempos, photoPath);
+
+        userRepository.register(user, new UserRepository.RegistrationCallback() {
+            @Override
+            public void onSuccess(String message) {
+                timeoutHandler.removeCallbacks(timeoutRunnable); // Remove timeout handler
+                if (!isFinishing()) {
                     runOnUiThread(() -> {
-                        progressDialog.dismiss();
-                        new AlertDialog.Builder(SignUpActivity.this)
-                                .setTitle("Registration Successful")
-                                .setMessage(message)
-                                .setPositiveButton("OK", (dialog, which) -> {
-                                    // Navigate to login screen or main screen
-                                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                })
-                                .show();
+                        try {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            new AlertDialog.Builder(SignUpActivity.this)
+                                    .setTitle("Registro Exitoso")
+                                    .setMessage(message)
+                                    .setPositiveButton("OK", (dialog, which) -> {
+                                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    })
+                                    .setCancelable(false)
+                                    .show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     });
                 }
+            }
 
-                @Override
-                public void onError(String error) {
+            @Override
+            public void onError(String error) {
+                timeoutHandler.removeCallbacks(timeoutRunnable); // Remove timeout handler
+                if (!isFinishing()) {
                     runOnUiThread(() -> {
-                        progressDialog.dismiss();
-                        new AlertDialog.Builder(SignUpActivity.this)
-                                .setTitle("Registration Failed")
-                                .setMessage(error)
-                                .setPositiveButton("OK", null)
-                                .show();
+                        try {
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                            new AlertDialog.Builder(SignUpActivity.this)
+                                    .setTitle("Error de Registro")
+                                    .setMessage(error)
+                                    .setPositiveButton("OK", null)
+                                    .show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     });
                 }
-            });
-        }else {
-            progressDialog.dismiss();
-            showError("Las contraseñas no coinciden.");
-        }
+            }
+        });
     }
 
     private void showRegistrationResult(String message) {

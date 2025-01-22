@@ -55,18 +55,30 @@ public class SocketClient {
 
         new Thread(() -> {
             try {
-                // Send the message
+                //Send the message
                 out.println(message);
+                out.flush(); //Ensure the message is sent immediately
 
-                // Wait for response with timeout
-                String response = in.readLine();
-                if (response != null) {
-                    mainHandler.post(() -> callback.onResponse(response));
+                //Wait for response with timeout
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = in.readLine()) != null) {
+                    response.append(line);
+                    if (line.contains("}")) {  // Check for end of JSON
+                        break;
+                    }
+                }
+
+                String finalResponse = response.toString();
+                if (!finalResponse.isEmpty()) {
+                    mainHandler.post(() -> callback.onResponse(finalResponse));
                 } else {
                     mainHandler.post(() -> callback.onError("No response from server"));
                 }
             } catch (Exception e) {
                 mainHandler.post(() -> callback.onError("Error sending message: " + e.getMessage()));
+                disconnect();
+                isConnected = false;
             }
         }).start();
     }
