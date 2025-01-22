@@ -136,6 +136,13 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+        // Obtener el boton y configurar el listener
+        Button button = findViewById(R.id.buttonRegresar);
+        button.setOnClickListener(v -> {
+            // Redirigir a la actividad Continuar con Registro
+            Intent intent4 = new Intent(SignUpActivity.this, TerminosCondiciones.class);
+            startActivity(intent4);
+        });
 
         //Set up fecha
         setupDatePicker();
