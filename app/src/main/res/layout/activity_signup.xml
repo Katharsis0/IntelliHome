@@ -152,7 +152,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
-            android:hint="@string/contraseña"
+            app:hintEnabled="false"
+
             app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="@id/spinnerNacionalidad"
             app:layout_constraintStart_toStartOf="@id/spinnerNacionalidad"
@@ -160,6 +161,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
+                android:hint="@string/contraseña"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:paddingTop="12dp"
@@ -173,6 +175,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
             app:passwordToggleEnabled="true"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="@id/editContrasena"
             app:layout_constraintStart_toStartOf="@id/editContrasena"
             app:layout_constraintTop_toBottomOf="@id/editContrasena">
@@ -192,6 +195,7 @@
             android:layout_height="48dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/radius_corner"
+            android:hint="@string/confirmar_contraseña"
             android:padding="9dp"
             app:layout_constraintEnd_toEndOf="@id/editConfirmarContrasena"
             app:layout_constraintStart_toStartOf="@id/editConfirmarContrasena"

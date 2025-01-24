@@ -270,6 +270,7 @@ public class SignUpActivity extends AppCompatActivity {
     // When the photo is selected or taken, store the file
     private void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePictureIntent, 0);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             try {
                 photoFile = createImageFile();
