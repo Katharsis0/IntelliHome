@@ -15,14 +15,17 @@
         android:theme="@style/Theme.IntelliHome"
         tools:targetApi="31">
         <activity
+            android:name=".MenuPrincipal"
+            android:exported="true" />
+        <activity
             android:name=".CambioContrasena"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".SecondActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".OlvidoContrasena"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
