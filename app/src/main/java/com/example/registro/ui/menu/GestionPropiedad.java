@@ -2,7 +2,6 @@ package com.example.registro.ui.menu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -12,41 +11,25 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.registro.R;
-import com.example.registro.ui.main.MainActivity;
 
-public class MenuPrincipal extends AppCompatActivity {
+public class GestionPropiedad extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_menu_principal);
+        setContentView(R.layout.activity_gestion_propiedad);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
         // Obtener el botón y configurar el listener
-        ImageButton button = findViewById(R.id.salir);
+        ImageButton button = findViewById(R.id.imageButton);
         button.setOnClickListener(v -> {
             // Redirigir a la actividad OlvidoContrasena
-            Intent intent = new Intent(MenuPrincipal.this, MainActivity.class);
+            Intent intent = new Intent(GestionPropiedad.this, MenuPrincipal.class);
             startActivity(intent);
-        });
-
-        // Obtener el botón y configurar el listener
-        ImageButton button1 = findViewById(R.id.imageButton8);
-        button1.setOnClickListener(v -> {
-            // Redirigir a la actividad OlvidoContrasena
-            Intent intent1 = new Intent(MenuPrincipal.this, RegistroPropiedad.class);
-            startActivity(intent1);
-        });
-
-        ImageButton button2 = findViewById(R.id.imageButton9);
-        button2.setOnClickListener(v -> {
-            // Redirigir a la actividad OlvidoContrasena
-            Intent intent2 = new Intent(MenuPrincipal.this, GestionPropiedad.class);
-            startActivity(intent2);
         });
     }
 }

@@ -25,6 +25,7 @@ import com.example.registro.data.service.AuthService;
 import com.example.registro.ui.auth.login.OlvidoContrasena;
 import com.example.registro.ui.auth.login.SecondActivity;
 import com.example.registro.ui.auth.registro.SignUpActivity;
+import com.example.registro.ui.auth.registro.TerminosCondiciones;
 import com.example.registro.ui.menu.MenuPrincipal;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         // Register button click listener
         Button buttonRegistrarse = findViewById(R.id.Button1);
         buttonRegistrarse.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+            Intent intent = new Intent(MainActivity.this, TerminosCondiciones.class);
             startActivity(intent);
         });
     }
@@ -200,17 +201,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1000) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
+                navigateToMainScreen();
                 task.getResult(ApiException.class);
-                navigateUpToSecondActivity();
             } catch(ApiException e) {
                 Toast.makeText(this, "Algo salió mal", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    void navigateUpToSecondActivity() {
-        finish();
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-        startActivity(intent);
     }
 }
