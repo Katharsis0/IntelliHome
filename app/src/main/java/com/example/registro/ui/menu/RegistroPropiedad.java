@@ -29,7 +29,7 @@ public class RegistroPropiedad extends AppCompatActivity {
         ImageButton button = findViewById(R.id.imageButton4);
         button.setOnClickListener(v -> {
             // Redirigir a la actividad OlvidoContrasena
-            Intent intent = new Intent(RegistroPropiedad.this, MenuPrincipal.class);
+            Intent intent = new Intent(RegistroPropiedad.this, GestionPropiedad.class);
             startActivity(intent);
         });
     }

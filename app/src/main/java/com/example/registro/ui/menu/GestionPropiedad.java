@@ -2,6 +2,7 @@ package com.example.registro.ui.menu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -29,6 +30,14 @@ public class GestionPropiedad extends AppCompatActivity {
         button.setOnClickListener(v -> {
             // Redirigir a la actividad OlvidoContrasena
             Intent intent = new Intent(GestionPropiedad.this, MenuPrincipal.class);
+            startActivity(intent);
+        });
+
+        // Obtener el botón y configurar el listener
+        Button button3 = findViewById(R.id.button3);
+        button3.setOnClickListener(v -> {
+            // Redirigir a la actividad OlvidoContrasena
+            Intent intent = new Intent(GestionPropiedad.this, RegistroPropiedad.class);
             startActivity(intent);
         });
     }

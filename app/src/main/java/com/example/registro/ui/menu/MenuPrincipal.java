@@ -29,22 +29,13 @@ public class MenuPrincipal extends AppCompatActivity {
         // Obtener el botón y configurar el listener
         ImageButton button = findViewById(R.id.salir);
         button.setOnClickListener(v -> {
-            // Redirigir a la actividad OlvidoContrasena
             Intent intent = new Intent(MenuPrincipal.this, MainActivity.class);
             startActivity(intent);
         });
 
-        // Obtener el botón y configurar el listener
-        ImageButton button1 = findViewById(R.id.imageButton8);
-        button1.setOnClickListener(v -> {
-            // Redirigir a la actividad OlvidoContrasena
-            Intent intent1 = new Intent(MenuPrincipal.this, RegistroPropiedad.class);
-            startActivity(intent1);
-        });
 
-        ImageButton button2 = findViewById(R.id.imageButton9);
+        ImageButton button2 = findViewById(R.id.imageButton8);
         button2.setOnClickListener(v -> {
-            // Redirigir a la actividad OlvidoContrasena
             Intent intent2 = new Intent(MenuPrincipal.this, GestionPropiedad.class);
             startActivity(intent2);
         });
