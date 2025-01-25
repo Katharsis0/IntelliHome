@@ -29,10 +29,15 @@ public class Message {
         this.message = json.optString("message", "");
     }
 
-    public static Message createLoginMessage(String username, String password) {
+    public static Message createLoginMessage(String usernameOrEmail, String password) {
         JSONObject payload = new JSONObject();
         try {
-            payload.put("username", username);
+            // Determine if input is an email (contains @) or username
+            if (usernameOrEmail.contains("@")) {
+                payload.put("email", usernameOrEmail);
+            } else {
+                payload.put("username", usernameOrEmail);
+            }
             payload.put("password", password);
         } catch (JSONException e) {
             e.printStackTrace();

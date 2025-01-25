@@ -117,12 +117,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleLogin() {
-        String username = inputUsername.getText().toString().trim();
+        String usernameOrEmail = inputUsername.getText().toString().trim();
         String password = inputPassword.getText().toString().trim();
 
         // Validación básica
-        if (username.isEmpty()) {
-            inputUsername.setError("El nombre de usuario es requerido");
+        if (usernameOrEmail.isEmpty()) {
+            inputUsername.setError("El nombre de usuario o e-mail es requerido");
             return;
         }
         if (password.isEmpty()) {
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
         // Intentar login
-        authService.login(username, password, new AuthService.AuthCallback() {
+        authService.login(usernameOrEmail, password, new AuthService.AuthCallback() {
             @Override
             public void onSuccess(String message) {
                 runOnUiThread(() -> {

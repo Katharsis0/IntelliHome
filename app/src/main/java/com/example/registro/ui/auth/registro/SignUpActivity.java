@@ -270,7 +270,6 @@ public class SignUpActivity extends AppCompatActivity {
                 })
                 .show();
     }
-
     // When the photo is selected or taken, store the file
     private void openCamera() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
