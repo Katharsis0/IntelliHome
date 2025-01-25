@@ -71,6 +71,21 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        // Ajuste para las barras del sistema
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // Obtener el TextView y configurar el listener
+        TextView textView = findViewById(R.id.textView2);
+        textView.setOnClickListener(v -> {
+            // Redirigir a la actividad OlvidoContrasena
+            Intent intent = new Intent(MainActivity.this, OlvidoContrasena.class);
+            startActivity(intent);
+        });
+
         // Inicializar vistas
         initializeViews();
         setupClickListeners();

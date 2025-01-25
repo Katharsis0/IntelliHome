@@ -38,6 +38,10 @@
             android:name=".ui.auth.registro.SignUpActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.auth.login.OlvidoContrasena"
+            android:exported="true" />
+
     </application>
 
 </manifest>
