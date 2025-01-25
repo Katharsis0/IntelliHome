@@ -1,0 +1,4 @@
+# User Database - Created on 2025-01-24 22:49:32.453434
+# Format: {"userId": "ID", "username": "USERNAME", "password": "PASSWORD", "userData": {...}}
+
+{"userId": "0", "username": "juanpe", "password": "pecesito", "userData": {"nombre": "Juan", "apellidos": "Pesca", "email": "juanpe@pez.com", "fechaNacimiento": "24/01/2025", "gender": "Hombre", "nacionalidad": "Chile", "pasatiempos": "Ver películas o series", "photoPath": "", "createdAt": "2025-01-24T22:50:50.710958"}}

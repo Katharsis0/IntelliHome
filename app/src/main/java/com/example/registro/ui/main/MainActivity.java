@@ -25,6 +25,7 @@ import com.example.registro.data.service.AuthService;
 import com.example.registro.ui.auth.login.OlvidoContrasena;
 import com.example.registro.ui.auth.login.SecondActivity;
 import com.example.registro.ui.auth.registro.SignUpActivity;
+import com.example.registro.ui.menu.MenuPrincipal;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -182,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void navigateToMainScreen() {
-        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        Intent intent = new Intent(MainActivity.this, MenuPrincipal.class);
         startActivity(intent);
         finish(); // Cerrar la actividad de login
     }

@@ -42,6 +42,14 @@
             android:name=".ui.auth.login.OlvidoContrasena"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.auth.login.CambioContrasena"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.menu.MenuPrincipal"
+            android:exported="true" />
+
     </application>
 
 </manifest>

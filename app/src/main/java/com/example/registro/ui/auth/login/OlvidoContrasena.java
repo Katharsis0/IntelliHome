@@ -34,11 +34,18 @@ public class OlvidoContrasena extends AppCompatActivity {
         });
 
         // Obtener el botón y configurar el listener
-        Button button = findViewById(R.id.Regresar);
-        button.setOnClickListener(v -> {
+        Button button1 = findViewById(R.id.Regresar);
+        button1.setOnClickListener(v -> {
             // Redirigir a la actividad OlvidoContrasena
             Intent intent1 = new Intent(OlvidoContrasena.this, MainActivity.class);
             startActivity(intent1);
+        });
+
+        Button button = findViewById(R.id.Verificar);
+        button.setOnClickListener(v -> {
+            // Redirigir a la actividad OlvidoContrasena
+            Intent intent2 = new Intent(OlvidoContrasena.this, CambioContrasena.class);
+            startActivity(intent2);
         });
     }
 }
