@@ -25,9 +25,11 @@
         android:theme="@style/Theme.Registro"
         tools:targetApi="31">
         <activity
-            android:name=".ui.auth.registro.TerminosCondiciones"
+            android:name=".ui.domotic.LucesActivity"
             android:exported="false" />
-        <!-- Main Activity -->
+        <activity
+            android:name=".ui.auth.registro.TerminosCondiciones"
+            android:exported="false" /> <!-- Main Activity -->
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">

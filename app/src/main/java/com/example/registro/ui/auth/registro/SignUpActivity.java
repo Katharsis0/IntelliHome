@@ -323,6 +323,12 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
+        // Check if username contains a slur
+        if (SlurChecker.containsSlur(username)) {
+            showError("El nombre de usuario contiene lenguaje inapropiado.");
+            return;
+        }
+
         // Show loading dialog
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Registrando usuario...");
@@ -345,7 +351,7 @@ public class SignUpActivity extends AppCompatActivity {
         timeoutHandler.postDelayed(timeoutRunnable, 30000);
 
         String photoPath = photoFile != null ? photoFile.getAbsolutePath() : "";
-        User user = new User(nombre, apellidos, username, email, password,fechaNacimiento, selectedGender,
+        User user = new User(nombre, apellidos, username, email, password, fechaNacimiento, selectedGender,
                 nacionalidad, pasatiempos, photoPath);
 
         userRepository.register(user, new UserRepository.RegistrationCallback() {

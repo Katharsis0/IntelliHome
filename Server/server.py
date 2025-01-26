@@ -2,6 +2,11 @@ import socket
 import json
 import os
 from datetime import datetime
+import hashlib
+
+def hash_data(data):
+    """Hash the given data using SHA-256."""
+    return hashlib.sha256(data.encode('utf-8')).hexdigest()
 
 class UserDatabase:
     def __init__(self, filename="users.txt"):
@@ -17,24 +22,27 @@ class UserDatabase:
     def save_user(self, user_data):
         try:
             user_id = str(sum(1 for line in open(self.filename) if line.strip() and not line.startswith("#")))
-            user_entry = {
+            
+            # Hash all sensitive user information
+            hashed_user_data = {
                 "userId": user_id,
-                "username": user_data["username"],
-                "password": user_data["password"],  # Use password hashing in production
+                "username": hash_data(user_data["username"]),
+                "password": hash_data(user_data["password"]),  # Hash the password
                 "userData": {
-                    "nombre": user_data.get("nombre", ""),
-                    "apellidos": user_data.get("apellidos", ""),
-                    "email": user_data.get("email", ""),
-                    "fechaNacimiento": user_data.get("fechaNacimiento", ""),
-                    "gender": user_data.get("gender", ""),
-                    "nacionalidad": user_data.get("nacionalidad", ""),
-                    "pasatiempos": user_data.get("pasatiempos", ""),
-                    "photoPath": user_data.get("photoPath", ""),
+                    "nombre": hash_data(user_data.get("nombre", "")),
+                    "apellidos": hash_data(user_data.get("apellidos", "")),
+                    "email": hash_data(user_data.get("email", "")),
+                    "fechaNacimiento": hash_data(user_data.get("fechaNacimiento", "")),
+                    "gender": hash_data(user_data.get("gender", "")),
+                    "nacionalidad": hash_data(user_data.get("nacionalidad", "")),
+                    "pasatiempos": hash_data(user_data.get("pasatiempos", "")),
+                    "photoPath": hash_data(user_data.get("photoPath", "")),
                     "createdAt": datetime.now().isoformat()
                 }
             }
+            
             with open(self.filename, "a") as f:
-                f.write(json.dumps(user_entry, ensure_ascii=False) + "\n")
+                f.write(json.dumps(hashed_user_data, ensure_ascii=False) + "\n")
             return True, user_id
         except Exception as e:
             print(f"Error saving user: {e}")
@@ -47,9 +55,14 @@ class UserDatabase:
                     if line.strip() and not line.startswith("#"):
                         try:
                             user_data = json.loads(line.strip())
+                            # Hash the input credentials
+                            hashed_username = hash_data(username) if username else None
+                            hashed_password = hash_data(password)
+                            hashed_email = hash_data(email) if email else None
+
                             # Check for username/password OR email/password match
-                            if ((username and user_data["username"] == username and user_data["password"] == password) or 
-                                (email and user_data["userData"]["email"] == email and user_data["password"] == password)):
+                            if ((hashed_username and user_data["username"] == hashed_username and user_data["password"] == hashed_password) or 
+                                (hashed_email and user_data["userData"]["email"] == hashed_email and user_data["password"] == hashed_password)):
                                 return True, user_data["userId"], user_data
                         except json.JSONDecodeError:
                             continue
